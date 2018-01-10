@@ -1,0 +1,66 @@
+<!-- CrawlRequest Form: start -->
+<div class="card">
+    <div class="card-body">
+        <form class="form"  name="crawlForm" novalidate accessible-form>		                    
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label for="seedURL">Seed URL</label>
+                    <input type="text" class="form-control" id="seedURL" required="" name="seedURL" ng-model="seed_url" placeholder="Enter seed url">
+                    <div ng-if="crawlForm.$submitted">
+                        <div style="color:#f00" ng-show="crawlForm.seedURL.$error.required">
+                            Seed URL is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="depth">Depth</label>
+                    <select id="depth" class="form-control" required="" name="depth" ng-model="depth">
+                        <option value="" disabled selected style=" display: none;">Select depth</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    <div ng-if="crawlForm.$submitted">
+                        <div style="color:#f00" ng-show="crawlForm.depth.$error.required">
+                            Depth is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="crawlForm.$valid && crawl(seed_url, depth)">Crawl</button>
+        </form>
+    </div>
+</div>
+<!-- CrawlRequest Form: end -->
+<br>
+<br>
+
+<!-- Previous Crawl Requests: start -->
+
+<h4 class="p-100">Previous Crawls</h4>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Seed URL</th>
+            <th scope="col">Depth</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="request in crawlRequests | orderBy:'-id' track by request.id ">
+            <th scope="row">{{request.id}}</th>
+            <td>{{request.seed_url}}</td>
+            <td>{{request.depth}}</td>
+            <td>
+                <a href="#!/crawled-images/{{request.id}}" role="button" class="btn btn-primary" ng-show="request.status==='Success'">Show results</a>
+                <a role="button" class="btn btn-primary" ng-disabled="true" ng-show="request.status==='Started'">Show results</a>
+                <a role="button" class="btn btn-primary" ng-disabled="true" ng-show="request.status==='Error'">Show results</button>
+            </td>                
+        </tr>
+    </tbody>
+</table>
+<!-- Previous Crawl Requests: end -->
