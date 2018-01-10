@@ -10,10 +10,9 @@ class CrawlRequestSerializer(serializers.ModelSerializer):
 
 class CrawlRequestListSerializer(serializers.ModelSerializer):
     """Serializer for listing CrawlRequests"""
-    images = serializers.StringRelatedField(many=True)
     class Meta:
         model = CrawlRequest
-        fields = ('id', 'seed_url','depth', 'status', 'created', 'images')
+        fields = ('id', 'seed_url','depth', 'status', 'created')
 
 class CrawledImagesSerializer(serializers.ModelSerializer):
     """Serializer to return CrawledImages"""
