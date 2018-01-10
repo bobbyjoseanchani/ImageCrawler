@@ -57,7 +57,7 @@
             <td>{{request.depth}}</td>
             <td>
                 <a href="#!/crawled-images/{{request.id}}" role="button" class="btn btn-primary" ng-show="request.status==='Success'">Show results</a>
-                <a role="button" class="btn btn-primary" ng-disabled="true" ng-show="request.status==='Started'">Show results</a>
+                <a role="button" class="btn btn-primary" ng-disabled="true" ng-show="request.status==='Started'"><i class="fa fa-circle-o-notch fa-spin"></i> Crawling...</a>
                 <a role="button" class="btn btn-primary" ng-disabled="true" ng-show="request.status==='Error'">Show results</button>
             </td>                
         </tr>
