@@ -21,7 +21,6 @@ from crawler import views
 
 router = routers.DefaultRouter()
 router.register(r'CrawlRequest', views.CrawlRequestViewset)
-router.register(r'CrawledImages', views.CrawledImagesViewset)
 
 urlpatterns = [
     url(r'^crawler/', include('crawler.urls')),

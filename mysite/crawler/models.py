@@ -15,8 +15,11 @@ class CrawledImages(models.Model):
     """Model to hold crawled images.
     This model has a many-to-one relationship with CrawlRequest.
     """
-    crawl_request = models.ForeignKey(CrawlRequest)
+    crawl_request = models.ForeignKey(CrawlRequest, related_name='images')
     image_url = models.CharField(max_length=300)
+
+    def __unicode__(self):
+        return self.image_url
 
 from .tasks import crawl_task 
 def process_crawl_request(sender, instance, created, **kwargs):
